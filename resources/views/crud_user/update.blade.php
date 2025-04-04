@@ -136,6 +136,15 @@ div.nav.phanTrang{
                     <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
             </div>
+            <label for="age">tuoi: </label>
+                <input type="number" placeholder="age" id="age" class="form-control" name="age"
+                   required autofocus>
+            </div>
+            <label for="soThich">so thich: </label>
+                <input type="text" placeholder="soThich" id="soThich" class="form-control" name="soThich"
+                   required autofocus>
+                
+            </div>
             <div class="email">
             <label for="email">email: </label>
 

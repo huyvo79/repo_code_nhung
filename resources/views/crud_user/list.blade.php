@@ -129,6 +129,8 @@ div.nav.phanTrang{
                 <th>STT</th>
                 <th>User Name</th>
                 <th>Email</th>
+                <th>so thich</th>
+                <th>toi</th>
                 <th>Thao tác</th>
             </tr>
             @foreach($users as $user)
@@ -136,6 +138,8 @@ div.nav.phanTrang{
                     <th>{{ $user->id }}</th>
                     <th>{{ $user->name }}</th>
                     <th>{{ $user->email }}</th>
+                    <th>{{ $user->soThich }}</th>
+                    <th>{{ $user->age }}</th>
                     <th>
                         <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |
                         <a href="{{ route('user.updateUser', ['id' => $user->id]) }}">Edit</a> |

@@ -136,6 +136,14 @@ div.nav.phanTrang{
                 <label for="email">your email: </label>
                 <p>{{$messi->email}}</p>
             </div>
+            <div class="age">
+                <label for="age">tuoi </label>
+                <p>{{$messi->age}}</p>
+            </div>
+            <div class="soThich">
+                <label for="soThich">sothich </label>
+                <p>{{$messi->soThich}}</p>
+            </div>
             <div class="Update">
               <a href="{{ route('user.updateUser', ['id' => $messi->id]) }}">update</a>
             </div>
