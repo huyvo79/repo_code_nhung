@@ -119,10 +119,10 @@ class CrudUserController extends Controller
 
        $user = User::find($input['id']);
        $user->name = $input['name'];
+       $user->age = $input['age'];
+       $user->soThich = $input['soThich'];
        $user->email = $input['email'];
        $user->password = $input['password'];
-       'age' => $data['age'],
-            'soThich' => $data['soThich'],
        $user->save();
 
         return redirect("list")->withSuccess('You have signed-in');
