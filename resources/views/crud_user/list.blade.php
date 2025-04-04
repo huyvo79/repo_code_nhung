@@ -99,8 +99,7 @@ th, td{
 
 }
 th {
-    background-color: #e9cc7c;
-    color: white;
+    color: black;
 }
 
 tr:nth-child(even) {
@@ -130,7 +129,6 @@ div.nav.phanTrang{
                 <th>STT</th>
                 <th>User Name</th>
                 <th>Email</th>
-                <th>c</th>
                 <th>Thao tác</th>
             </tr>
             @foreach($users as $user)
