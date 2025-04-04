@@ -130,6 +130,7 @@ div.nav.phanTrang{
                 <th>STT</th>
                 <th>User Name</th>
                 <th>Email</th>
+                <th>c</th>
                 <th>Thao tác</th>
             </tr>
             @foreach($users as $user)
