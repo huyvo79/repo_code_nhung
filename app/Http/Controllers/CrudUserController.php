@@ -59,7 +59,15 @@ class CrudUserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048'
         ]);
+        $imagePath = null;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $imagePath = $file->storeAs('uploads', $fileName, 'public'); // Save file path
+        }
 
         $data = $request->all();
         $check = User::create([
@@ -67,7 +75,8 @@ class CrudUserController extends Controller
             'age' => $data['age'],
             'soThich' => $data['soThich'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
+            'image' => $imagePath,
         ]);
 
         return redirect("login");
@@ -76,7 +85,8 @@ class CrudUserController extends Controller
     /**
      * View user detail page
      */
-    public function readUser(Request $request) {
+    public function readUser(Request $request)
+    {
         $user_id = $request->get('id');
         $user = User::find($user_id);
 
@@ -86,7 +96,8 @@ class CrudUserController extends Controller
     /**
      * Delete user by id
      */
-    public function deleteUser(Request $request) {
+    public function deleteUser(Request $request)
+    {
         $user_id = $request->get('id');
         $user = User::destroy($user_id);
 
@@ -110,22 +121,30 @@ class CrudUserController extends Controller
     public function postUpdateUser(Request $request)
     {
         $input = $request->all();
-
+    
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,id,'.$input['id'],
+            'email' => 'required|email|unique:users,email,' . $input['id'], // Corrected unique validation
             'password' => 'required|min:6',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048'
         ]);
-
-       $user = User::find($input['id']);
-       $user->name = $input['name'];
-       $user->age = $input['age'];
-       $user->soThich = $input['soThich'];
-       $user->email = $input['email'];
-       $user->password = $input['password'];
-       $user->save();
-
-        return redirect("list")->withSuccess('You have signed-in');
+    
+        $user = User::find($input['id']);
+    
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $imagePath = $file->storeAs('uploads', $fileName, 'public'); // Save file path
+            $user->image = $imagePath;
+        }
+        $user->name = $input['name'];
+        $user->age = $input['age'];
+        $user->soThich = $input['soThich'];
+        $user->email = $input['email'];
+        $user->password = Hash::make($input['password']); // Hash the password before saving
+        $user->save();
+    
+        return redirect("list")->withSuccess('User updated successfully.');
     }
 
     /**
@@ -133,7 +152,7 @@ class CrudUserController extends Controller
      */
     public function listUser()
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $users = User::all();
             return view('crud_user.list', ['users' => $users]);
         }
@@ -144,7 +163,8 @@ class CrudUserController extends Controller
     /**
      * Sign out
      */
-    public function signOut() {
+    public function signOut()
+    {
         Session::flush();
         Auth::logout();
 

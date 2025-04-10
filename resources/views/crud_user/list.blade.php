@@ -130,7 +130,8 @@ div.nav.phanTrang{
                 <th>User Name</th>
                 <th>Email</th>
                 <th>so thich</th>
-                <th>toi</th>
+                <th>tuổi</th>
+                <th>hình ảnh</th>
                 <th>Thao tác</th>
             </tr>
             @foreach($users as $user)
@@ -140,6 +141,8 @@ div.nav.phanTrang{
                     <th>{{ $user->email }}</th>
                     <th>{{ $user->soThich }}</th>
                     <th>{{ $user->age }}</th>
+                    <th><img src="{{ asset('storage/' . $user->image) }}" alt="Ảnh đại diện" width="150"></th>
+
                     <th>
                         <a href="{{ route('user.readUser', ['id' => $user->id]) }}">View</a> |
                         <a href="{{ route('user.updateUser', ['id' => $user->id]) }}">Edit</a> |
