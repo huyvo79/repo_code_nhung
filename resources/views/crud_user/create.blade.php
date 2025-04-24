@@ -157,16 +157,19 @@
                     <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif
             </div>
+
             <div>
                 <label for="age">tuoi: </label>
                 <input type="number" placeholder="age" id="age" class="form-control" name="age" required autofocus>
             </div>
+
             <div>
                 <label for="soThich">so thich: </label>
                 <input type="text" placeholder="soThich" id="name" class="form-control" name="soThich" required
                     autofocus>
 
             </div>
+
             <div class="image">
                 <label for="image">Ảnh đại diện: </label>
                 <input type="file" name="image" class="form-control" accept="image/*">
@@ -181,6 +184,7 @@
                     <span class="text-danger">{{ $errors->first('email') }}</span>
                 @endif
             </div>
+
             <div class="password">
                 <label for="password">password </label>
 
@@ -189,19 +193,23 @@
                     <span class="text-danger">{{ $errors->first('password') }}</span>
                 @endif
             </div>
+
             <div class="RePassword">
                 <label for="Recomfirm">comfirm <br>password: </label>
                 <input type="password" placeholder="comfirm yor password" id="RePassword" name="RePassword" required>
             </div>
+
             <div class="checkbox">
                 <label>
                     <input type="checkbox" name="remember"> Remember Me
                 </label>
             </div>
+
             <div class="dangNhap">
                 <a href="#">Đã có tài khoản</a>
                 <button type="submit">đăng ký</button>
             </div>
+            
         </form>
 
     </div>
