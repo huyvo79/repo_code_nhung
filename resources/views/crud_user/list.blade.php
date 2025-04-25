@@ -120,7 +120,7 @@
     }
 
     th {
-        background-color: #e9cc7c;
+        background-color:white;
         color: white;
     }
 
