@@ -120,8 +120,7 @@
     }
 
     th {
-        background-color:white;
-        color: white;
+        color: black;
     }
 
     tr:nth-child(even) {
@@ -130,7 +129,6 @@
 
     div.nav.phanTrang {
         border: none;
-        position: fixed;
         bottom: 60px;
         left: 40%;
         text-align: center;
@@ -152,6 +150,7 @@
                 <th>User Name</th>
                 <th>Email</th>
                 <th>Roles</th>
+                <th>orders</th>
                 <th>Thao tác</th>
             </tr>
             @foreach($users as $user)
@@ -159,10 +158,18 @@
                     <th>{{ $user->id }}</th>
                     <th>{{ $user->name }}</th>
                     <th>{{ $user->email }}</th>
+
                     <th>
                         @foreach($user->roles as $role)
                             <a href="{{ route('user.role', ['id' => $role->id]) }}">
                                 {{ $role->name . '-' }}
+                            </a>
+                        @endforeach
+                    </th>
+                    <th>
+                        @foreach($user->orders as $order)
+                            <a href="{{ route('order.detail', ['id' => $order->id]) }}">
+                                {{ $order->id . '-' }}
                             </a>
                         @endforeach
                     </th>
@@ -174,21 +181,19 @@
                 </tr>
             @endforeach
         </table>
-    </div>
 
-    <!-- <div class="nav phanTrang">
-        <ul>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href="">5</a></li>
-            <li><a href="">6</a></li>
-        </ul>
-    </div>
-    <div class="nav_foot">
-        lập trình web 2025
-    </div> -->
+
+
+        <div class="nav phanTrang">
+            <ul>
+                {!! $users->withQueryString()->links('pagination::bootstrap-5') !!}
+
+            </ul>
+
+        </div>
+      
+
+
 </body>
 
 </html>
