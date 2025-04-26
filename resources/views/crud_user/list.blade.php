@@ -121,7 +121,7 @@
 
     th {
         background-color:white;
-        color: white;
+        color: black;
     }
 
     tr:nth-child(even) {
