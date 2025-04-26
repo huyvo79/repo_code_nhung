@@ -4,7 +4,8 @@
     <main class="login-form">
         <div class="container">
             <div class="row justify-content-center">
-                <table>
+                <h3>Role Details</h3>
+                <table class="table table-bordered" >
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -25,7 +26,7 @@
     <div class="container">
         <h3>List of users</h3>
         <div class="row justify-content-center">
-            <table>
+            <table class="table table-bordered" >
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -34,7 +35,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($role->users as $user)
+                @foreach($users as $user)
                     <tr>
                         <th>{{$user->id}}</th>
                         <th>{{$user->name}}</th>
@@ -44,5 +45,6 @@
                 </tbody>
             </table>
         </div>
+        {{ $users->appends(['role_id'=>request('role_id')]) ->links() }};
     </div>
 @endsection

@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Auth;
 class RoleController extends Controller
 {
     public function role(Request $request) {
-        $role_id = $request->get('id');
+        $role_id = $request->get('role_id');
         $role = Role::find($role_id);
 
        $data = [
            'role' => $role,
-           'users' => $role->users
+           'users' => $role->users()->paginate(10),
        ];
 
         return view('role.view', $data);
