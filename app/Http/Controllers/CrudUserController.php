@@ -137,6 +137,18 @@ class CrudUserController extends Controller
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
+    public function listUsersBySearch(Request $request)
+    {
+        $search = $request->input('search');
+
+        $users = User::when($search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+        })->paginate(10)->appends(['search' => $search]); // Append search query to pagination links
+
+        return view('crud_user.list', compact('users'));
+    }
+
     /**
      * Sign out
      */
